@@ -1,0 +1,53 @@
+.nav-height {
+    height: 200mvh;
+    background-color: #041328;
+    
+}
+
+.title{
+    margin-left: 10%;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+
+.mynav img {
+    height: 35px;
+    width: 35px;
+}
+
+h2 {
+    padding-bottom: 20px;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+td img {
+    height: 24px;
+    width: 24px;
+}
