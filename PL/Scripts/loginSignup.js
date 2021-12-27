@@ -206,6 +206,35 @@ jQuery(document).ready(function ($) {
             },
           });
       });
+
+      $(".signout").click(function(e)
+      {
+        e.preventDefault();
+        $.ajax({
+          
+            type: "GET", 
+            url: "../../BLL/destroySession.php",
+            beforeSend: function (xhr) {
+              console.log("Ajax call initiated");
+            },
+            success: function (data) {
+              if (data) {
+                  console.log("Ajax call success");
+                  window.location.replace("../Views/cryptoStats.html");
+              } else {
+                  console.log("Ajax call NOT success"); 
+              }
+              
+            },
+            error: function () {
+              $(".throw_error").fadeIn(1000).html("Serve error!!"); 
+              console.log("Ajax call error");
+            },
+            complete: function () {
+              console.log("Ajax call completed");
+            },
+          });
+      });
   });
   
   //credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/

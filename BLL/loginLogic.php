@@ -24,6 +24,7 @@
             if(LoginUser($user)){
                 session_start();
                 $_SESSION['email'] = $user ->getemail();
+                $_SESSION['CREATED'] = time();
                 echo true;
             }
             echo false;
