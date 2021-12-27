@@ -48,5 +48,24 @@
         }
     }
 
+    function LoginUser($userDTOR)
+    {
+        $conn = OpenCon();
+
+        $email = $userDTOR->getemail();
+        $password = $userDTOR->getpass();
+
+        $query = "SELECT * FROM user WHERE email= LOWER('$email') AND password = (select SHA('$password')) Limit 1";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0) { // user found
+            CloseConn($conn);
+            return true;
+        } else {
+            CloseConn($conn);
+            return false;
+        }
+    }
+
 
 ?>

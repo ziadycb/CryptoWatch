@@ -52,7 +52,7 @@
     $user -> setpass($_POST['pass']);
 
 
-    if(!ValidateSignUp($_POST['name'],$_POST['email'],$_POST['pass']))
+    if(!ValidateSignUp($_POST['name'],$_POST['pass'],$_POST['email']))
     {
         echo false;
     }

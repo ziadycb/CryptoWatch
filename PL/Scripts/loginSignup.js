@@ -98,15 +98,7 @@ jQuery(document).ready(function ($) {
       $form_forgot_password.addClass("is-selected");
     }
   
-    //REMOVE THIS - it's just to show error messages
-    $form_login.find('input[type="submit"]').on("click", function (event) {
-      event.preventDefault();
-      $form_login
-        .find('input[type="email"]')
-        .toggleClass("has-error")
-        .next("span")
-        .toggleClass("is-visible");
-    });
+    
    
   
     //IE9 placeholder fallback
@@ -144,7 +136,7 @@ jQuery(document).ready(function ($) {
 
     $form_signup.find('input[type="submit"]').on("click", function (event) {
         //Trigger on form submit
-        console.log("Form submit event started");
+        console.log($("input[name=email]").val());
 
         var postForm = {
           //Fetch form data
@@ -181,9 +173,39 @@ jQuery(document).ready(function ($) {
         console.log("Form submit event ended");
       });
 
-      
+      $("#saveAppt").click(function(){
 
-      
+        var postForm = {
+            //Fetch form data
+            email: $("input[name=Email]").val(), 
+            pass: $("input[name=Pass]").val(), 
+          };
+          $.ajax({
+          
+            type: "POST", 
+            url: "../../BLL/loginLogic.php",
+            data: postForm, 
+            beforeSend: function (xhr) {
+              console.log("Ajax call initiated");
+            },
+            success: function (data) {
+              if (data) {
+                  console.log("Ajax call success");
+                  window.location.replace("../Views/cryptoStats.html");
+              } else {
+                  console.log("Ajax call NOT success"); 
+              }
+              
+            },
+            error: function () {
+              $(".throw_error").fadeIn(1000).html("Serve error!!"); 
+              console.log("Ajax call error");
+            },
+            complete: function () {
+              console.log("Ajax call completed");
+            },
+          });
+      });
   });
   
   //credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
