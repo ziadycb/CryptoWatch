@@ -4,17 +4,19 @@
     
 }
 
+.checked {
+    color: orange;
+  }
+
+span {
+    z-index: 99;
+}
 .title{
     margin-left: 10%;
     padding-bottom: 10%;
     padding-top: 10%;
 }
 
-a img {
-    height: 35px;
-    width: 35px;
-    margin-right: 20px;
-}
 
 h2 {
     padding-bottom: 20px;

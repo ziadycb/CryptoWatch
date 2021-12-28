@@ -1,0 +1,15 @@
+.selector {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.news {
+    background-color: white;
+    margin: 20px;
+}
+
+
+
+html,body,.all{
+    background-color: #f1f2f7;
+}

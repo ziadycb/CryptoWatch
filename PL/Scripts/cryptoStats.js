@@ -20,7 +20,7 @@ $(document).ready(function(){
             $('#vol').append(result.total24hVolume);
             $('#mark').append(result.totalMarkets);
 
-            console.log(result.totalCoins);
+            //console.log(result.totalCoins);
         });
 
         // window.location.href ="./Searched.php";
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
             
             var results = JSON.parse(data);
-            console.log(results);
+            //console.log(results);
             var name ="";
             var img ="";
             var price="";
@@ -47,7 +47,7 @@ $(document).ready(function(){
         for ( let i = 0; i < 10; i++) {  
             
             var result = $(results.data.coins).get(i);
-            console.log(result);
+            //console.log(result);
             name = result.name;
             img = result.iconUrl;
             price = result.price;
@@ -58,6 +58,7 @@ $(document).ready(function(){
             
             $("#tb").append(
                 "<tr>"
+                    +'<td><span><span id="btnClear" class="fa fa-star '+symbol+'"></span></span></td>'
                     +'<th scope="row">'+(i+1)+'</th>'
                     +"<td>"
                     +'<img src="'+img+'">'
@@ -72,6 +73,25 @@ $(document).ready(function(){
             }
         });
         
+        $("body").on("click", "#btnClear", function() {
 
-        
+            if(!$(this).hasClass("checked"))
+            {
+                var get_cls = $(this).attr("class");
+                var answer = get_cls.split(" ").pop();
+                console.log(answer);
+
+                $(this).attr('class', 'checked ' + $(this).attr('class'));
+            }
+
+            else
+            {
+                var get_cls = $(this).attr("class");
+                var answer = get_cls.split(" ").pop();
+                console.log(answer);
+
+                $(this).removeClass("checked");
+            }
+        });
+
  })
