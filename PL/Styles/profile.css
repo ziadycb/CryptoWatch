@@ -37,3 +37,20 @@ html,body,.all{
 .profile-head h6{
     color: #0062cc;
 }
+
+td img {
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+}
+
+.pos {
+    color: rgb(64, 209, 64);
+  }
+
+  .neg {
+    color: red;
+  }
+  .checked {
+    color: orange;
+  }

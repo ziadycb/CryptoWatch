@@ -5,7 +5,7 @@ $curl = curl_init();
   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.coinranking.com/v2/coins",
+    CURLOPT_URL => "https://api.coinranking.com/v2/coins".$_POST["apiURL"],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
