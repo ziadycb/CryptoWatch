@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
     
 
-    var $form_modal = $(".cd-user-modal"),
+      var $form_modal = $(".cd-user-modal"),
       $form_login = $form_modal.find("#cd-login"),
       $form_signup = $form_modal.find("#cd-signup"),
       $form_forgot_password = $form_modal.find("#cd-reset-password"),
@@ -14,6 +14,7 @@ jQuery(document).ready(function ($) {
       ),
       $main_nav = $(".main-nav");
   
+
     //open modal
     $main_nav.on("click", function (event) {
       if ($(event.target).is($main_nav)) {

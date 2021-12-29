@@ -2,6 +2,8 @@
 
     include_once('connection.php');
     include_once('../DTO/DTORequests/userDTORequest.php');
+    include_once("../DTO/DTORequests/subDTORequest.php");
+    include_once("../DTO/DTOResponses/subDTOResponse.php");
 
 
 
@@ -23,7 +25,6 @@
         $conn = OpenCon();
 
         
-
         $name = $userDTOR->getusername();
         $email = $userDTOR->getemail();
         $pass = $userDTOR->getpass();
@@ -65,6 +66,115 @@
             CloseConn($conn);
             return false;
         }
+    }
+
+    function getUserID($email,$conn)
+    {
+        $select = "SELECT iduser FROM user WHERE email= LOWER('$email')";
+        $result = mysqli_query($conn, $select);
+        $userid = "";
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $row = $result->fetch_assoc();
+            return $row["iduser"];
+          }
+    }
+
+    function getCoinID($coin,$conn)
+    {
+        $select = "SELECT coin_id FROM coin WHERE symbol= '$coin'";
+        $result = mysqli_query($conn, $select);
+        $coinid = "";
+        
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $row = $result->fetch_assoc();
+            return $row["coin_id"];
+          }
+    }
+
+
+    function InsertSub($subDTOR)
+    {
+        $conn = OpenCon();
+
+        $email = $subDTOR->getemail();
+        $coin = $subDTOR->getcoin();
+
+        $userid = getUserID($email,$conn);
+        $coinid = getCoinID($coin,$conn);
+
+        $sql = "INSERT INTO watchlist (iduser, coin_id)
+        VALUES ('$userid', '$coinid')";
+        $result = mysqli_query($conn, $sql);
+
+        CloseConn($conn);
+    }
+
+    function delSub($subDTOR)
+    {
+        $conn = OpenCon();
+
+        $email = $subDTOR->getemail();
+        $coin = $subDTOR->getcoin();
+
+        $userid = getUserID($email,$conn);
+        $coinid = getCoinID($coin,$conn);
+
+        $sql = "DELETE FROM watchlist WHERE iduser = '$userid' AND coin_id = '$coinid'";
+        $result = mysqli_query($conn, $sql);
+        CloseConn($conn);
+    }
+
+    function getSub($subDTOR)
+    {
+        $conn = OpenCon();
+
+        $email = $subDTOR->getemail();
+
+        $select = "SELECT iduser FROM user WHERE email= LOWER('$email')";
+        $result = mysqli_query($conn, $select);
+        $userid = "";
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $row = $result->fetch_assoc();
+            $userid = $row["iduser"];
+          }
+
+        $select = "SELECT coin_id FROM watchlist WHERE iduser= '$userid'";
+        $result = mysqli_query($conn, $select);
+        $coin = array();
+        $coinid = 0;
+        $counter = 0;
+        $sub = new subDTOResponse();
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+
+                $coinid = $row["coin_id"];
+                $select = "SELECT symbol FROM coin WHERE coin_id= '$coinid'";
+                $result2 = mysqli_query($conn, $select);
+                
+                
+                if ($result2->num_rows > 0) {
+                    // output data of each row
+                    $row2 = $result2->fetch_assoc();
+                    $coin[$counter] = $row2["symbol"];
+                    $counter = $counter + 1;
+                }
+               
+        
+            }
+            
+            $sub-> setemail($email);
+            $sub-> setcoin($coin);
+          }
+
+          return $sub;
+        
     }
 
 

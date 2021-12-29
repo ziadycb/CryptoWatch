@@ -3,6 +3,11 @@
    License: none (public domain)
 */
 
+.hidesession {
+  visibility: hidden;
+  position: absolute;
+  display: none;
+}
 
 ol,
 ul {

@@ -21,7 +21,7 @@ $curl = curl_init();
   $response = curl_exec($curl);
   $err = curl_error($curl);
 
-  $json_a2 = json_decode($response, true);
+  
   
   curl_close($curl);
   //$json_a2 = json_encode($json_a2['coins'], true);
