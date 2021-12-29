@@ -1,97 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="../Styles/cryptoStats.css" rel="stylesheet">
-    <link href="../Styles/loginSignup.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="../Scripts/cryptoStats.js"></script>
-    <script src="../Scripts/checkSession.js"></script>
-    <script src="../Scripts/loginSignup.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <style>
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-      </style>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+    integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="../Styles/cryptoStats.css" rel="stylesheet">
+  <link href="../Styles/loginSignup.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../Scripts/checkSession.js"></script>
+  <script src="../Scripts/loginSignup.js"></script>
+  <script src="../Scripts/cryptoStats.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 
 
 </head>
+
 <body>
-    <div class="row" style="height: 100%">
-        
-        <div class="d-flex col-2 flex-column flex-shrink-0 p-3 text-white bg-dark">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <img src="../Assets/coinmarketcap.png">
-              <span class="fs-4">CryptoWatch</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white" aria-current="page">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link active">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                  Cryptocurrencies
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link text-white">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                  News
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link text-white">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                  Exchanges
-                </a>
-              </li>
-            </ul>
-            <hr>
-            <nav class="main-nav row">
-                <ul>
-                  <!-- inser more links here -->
-                  <li><a class="cd-signin" href="#0">Sign in</a></li>
-                  <li><a class="cd-signup" href="#0">Sign up</a></li>
-                </ul>
-              </nav>
-            <div class="dropdown">
-              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item signout" href="#">Sign out</a></li>
-              </ul>
-            </div>
-          </div>
-        <!-- <div class="nav col-2 flex-column nav-pills nav-height mynav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <div class="row" style="height: 100%">
+
+    <div class="d-flex col-2 flex-column flex-shrink-0 p-3 text-white bg-dark">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <img src="../Assets/coinmarketcap.png">
+        <span class="fs-4">CryptoWatch</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" aria-current="page">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#home" />
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link active">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#speedometer2" />
+            </svg>
+            Cryptocurrencies
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#table" />
+            </svg>
+            News
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#grid" />
+            </svg>
+            Exchanges
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <nav class="main-nav row">
+        <ul>
+          <!-- inser more links here -->
+          <li><a class="cd-signin" href="#0">Sign in</a></li>
+          <li><a class="cd-signup" href="#0">Sign up</a></li>
+        </ul>
+      </nav>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item signout" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="nav col-2 flex-column nav-pills nav-height mynav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <p class="title text-white">
                 <img src="../Assets/coinmarketcap.png">
                 CryptoWatch</p>
@@ -101,169 +123,180 @@
             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
           </div> -->
 
-        <div class="col-10">
-            <div class="row">
-                <div class="col-6 text-dark">
-                    <h1>Global Crypto Stats</h1>
-                </div>
-                
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <p>Total Cryptocurrencies</p>
-                    <h2 id="cry"></h2>
-                </div>
-                <div class="col-6">
-                    <p>Total Exchanges</p>
-                    <h2 id="exchange"></h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <p>Total Market Cap</p>
-                    <h2 id="marketCap"></h2>
-                </div>
-                <div class="col-6">
-                    <p>Total 24H Volume</p>
-                    <h2 id="vol"></h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <p>Total Markets</p>
-                    <h2 id="mark"></h2>
-                </div>
-                <div class="col-6">
-                    <p>Lepsum</p>
-                </div>
-            </div>
-            
-
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">24h %</th>
-                    <th scope="col">Market Cap</th>
-                    <th scope="col">Volume(24H)</th>
-                    <th scope="col">Last 7d</th>
-                  </tr>
-                </thead>
-                <tbody id="tb">
-                  
-                </tbody>
-              </table>
-
-            
+    <div class="col-10">
+      <div class="row">
+        <div class="col-6 text-dark">
+          <h1>Global Crypto Stats</h1>
         </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p>Total Cryptocurrencies</p>
+          <h2 id="cry"></h2>
+        </div>
+        <div class="col-6">
+          <p>Total Exchanges</p>
+          <h2 id="exchange"></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p>Total Market Cap</p>
+          <h2 id="marketCap"></h2>
+        </div>
+        <div class="col-6">
+          <p>Total 24H Volume</p>
+          <h2 id="vol"></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p>Total Markets</p>
+          <h2 id="mark"></h2>
+        </div>
+        <div class="col-6">
+          <p>Lepsum</p>
+        </div>
+      </div>
+
+      <div style="width:1409px; display: inline-block; height:350px; overflow:auto;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">24h %</th>
+              <th scope="col">Market Cap</th>
+              <th scope="col">Volume(24H)</th>
+              <th scope="col">Last 7d</th>
+            </tr>
+          </thead>
+
+          <tbody id="tb">
+
+          </tbody>
+
+
+        </table>
+      </div>
 
     </div>
 
+  </div>
 
-<!-- LOGIN AND SIGNUP POPUP -->
 
-    <div class="cd-user-modal">
-        <!-- this is the entire modal form, including the background -->
-        <div class="cd-user-modal-container">
-          <!-- this is the container wrapper -->
-          <ul class="cd-switcher">
-            <li><a href="#0">Sign in</a></li>
-            <li><a href="#0">New account</a></li>
-          </ul>
-      
-          <div id="cd-login">
-            <!-- log in form -->
-            <form class="cd-form">
-              <p class="fieldset">
-                <label class="image-replace cd-email" for="signin-email">E-mail</label>
-                <input name="Email" class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <label class="image-replace cd-password" for="signin-password">Password</label>
-                <input name="Pass" class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
-                <a href="#0" class="hide-password">Hide</a>
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <input type="checkbox" id="remember-me" checked>
-                <label for="remember-me">Remember me</label>
-              </p>
-      
-              <p class="fieldset">
-                <button type="button" id="saveAppt" class="btn btn-default">Login</button>
-                <!-- <input class="full-width" type="submit" value="Login"> -->
-              </p>
-            </form>
-      
-            <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
-            <!-- <a href="#0" class="cd-close-form">Close</a> -->
-          </div> <!-- cd-login -->
-      
-          <div id="cd-signup">
-            <!-- sign up form -->
-            <form class="cd-form" id="cd-form-signup">
-              <p class="fieldset">
-                <label class="image-replace cd-username" for="signup-username">Username</label>
-                <input name="name" class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                <input name="email" class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <label class="image-replace cd-password" for="signup-password">Password</label>
-                <input name="pass" class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
-                <a href="#0" class="hide-password">Hide</a>
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <input type="checkbox" id="accept-terms">
-                <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-              </p>
-      
-              <p class="fieldset">
-                <input class="full-width has-padding" type="submit" value="Create account">
-              </p>
-            </form>
-      
-            <!-- <a href="#0" class="cd-close-form">Close</a> -->
-          </div> <!-- cd-signup -->
-      
-          <div id="cd-reset-password">
-            <!-- reset password form -->
-            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-      
-            <form class="cd-form">
-              <p class="fieldset">
-                <label class="image-replace cd-email" for="reset-email">E-mail</label>
-                <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
-      
-              <p class="fieldset">
-                <input class="full-width has-padding" type="submit" value="Reset password">
-              </p>
-            </form>
-      
-            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
-          </div> <!-- cd-reset-password -->
-          <a href="#0" class="cd-close-form">Close</a>
-        </div> <!-- cd-user-modal-container -->
-      </div> <!-- cd-user-modal -->
+  <!-- LOGIN AND SIGNUP POPUP -->
 
-    
+  <div class="cd-user-modal">
+    <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container">
+      <!-- this is the container wrapper -->
+      <ul class="cd-switcher">
+        <li><a href="#0">Sign in</a></li>
+        <li><a href="#0">New account</a></li>
+      </ul>
+
+      <div id="cd-login">
+        <!-- log in form -->
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signin-email">E-mail</label>
+            <input name="Email" class="full-width has-padding has-border" id="signin-email" type="email"
+              placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Password</label>
+            <input name="Pass" class="full-width has-padding has-border" id="signin-password" type="text"
+              placeholder="Password">
+            <a href="#0" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Remember me</label>
+          </p>
+
+          <p class="fieldset">
+            <button type="button" id="saveAppt" class="btn btn-default">Login</button>
+            <!-- <input class="full-width" type="submit" value="Login"> -->
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      <div id="cd-signup">
+        <!-- sign up form -->
+        <form class="cd-form" id="cd-form-signup">
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-username">Username</label>
+            <input name="name" class="full-width has-padding has-border" id="signup-username" type="text"
+              placeholder="Username">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signup-email">E-mail</label>
+            <input name="email" class="full-width has-padding has-border" id="signup-email" type="email"
+              placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signup-password">Password</label>
+            <input name="pass" class="full-width has-padding has-border" id="signup-password" type="text"
+              placeholder="Password">
+            <a href="#0" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Create account">
+          </p>
+        </form>
+
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-signup -->
+
+      <div id="cd-reset-password">
+        <!-- reset password form -->
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to
+          create a new password.</p>
+
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Reset password">
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+      </div> <!-- cd-reset-password -->
+      <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+
+
 </body>
+
 </html>
