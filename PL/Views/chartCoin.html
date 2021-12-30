@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+        integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="../Styles/loginSignup.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="../Scripts/loginSignup.js"></script>
+    <script src="../Scripts/checkSession.js"></script>
+    <script src="../Scripts/charting.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+    <div class="row all" style="height: 100%">
+        
+        <div class="d-flex col-2 flex-column flex-shrink-0 p-3 text-white bg-dark">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img src="../Assets/coinmarketcap.png">
+              <span class="fs-4">CryptoWatch</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white" aria-current="page">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                  Cryptocurrencies
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link active text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                  News
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+                  Exchanges
+                </a>
+              </li>
+            </ul>
+            <hr>
+            <nav class="main-nav row">
+                <ul>
+                  <!-- inser more links here -->
+                  <li><a class="cd-signin" href="#0">Sign in</a></li>
+                  <li><a class="cd-signup" href="#0">Sign up</a></li>
+                </ul>
+              </nav>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item signout" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+
+        <div class="col-10 chart">
+            
+
+        </div>
+    </div>
+
+    <div class="cd-user-modal">
+        <!-- this is the entire modal form, including the background -->
+        <div class="cd-user-modal-container">
+          <!-- this is the container wrapper -->
+          <ul class="cd-switcher">
+            <li><a href="#0">Sign in</a></li>
+            <li><a href="#0">New account</a></li>
+          </ul>
+    
+          <div id="cd-login">
+            <!-- log in form -->
+            <form class="cd-form">
+              <p class="fieldset">
+                <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                <input name="Email" class="full-width has-padding has-border" id="signin-email" type="email"
+                  placeholder="E-mail">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <label class="image-replace cd-password" for="signin-password">Password</label>
+                <input name="Pass" class="full-width has-padding has-border" id="signin-password" type="text"
+                  placeholder="Password">
+                <a href="#0" class="hide-password">Hide</a>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <input type="checkbox" id="remember-me" checked>
+                <label for="remember-me">Remember me</label>
+              </p>
+    
+              <p class="fieldset">
+                <button type="button" id="saveAppt" class="btn btn-default">Login</button>
+                <!-- <input class="full-width" type="submit" value="Login"> -->
+              </p>
+            </form>
+    
+            <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+            <!-- <a href="#0" class="cd-close-form">Close</a> -->
+          </div> <!-- cd-login -->
+    
+          <div id="cd-signup">
+            <!-- sign up form -->
+            <form class="cd-form" id="cd-form-signup">
+              <p class="fieldset">
+                <label class="image-replace cd-username" for="signup-username">Username</label>
+                <input name="name" class="full-width has-padding has-border" id="signup-username" type="text"
+                  placeholder="Username">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                <input name="email" class="full-width has-padding has-border" id="signup-email" type="email"
+                  placeholder="E-mail">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <label class="image-replace cd-password" for="signup-password">Password</label>
+                <input name="pass" class="full-width has-padding has-border" id="signup-password" type="text"
+                  placeholder="Password">
+                <a href="#0" class="hide-password">Hide</a>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <input type="checkbox" id="accept-terms">
+                <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+              </p>
+    
+              <p class="fieldset">
+                <input class="full-width has-padding" type="submit" value="Create account">
+              </p>
+            </form>
+    
+            <!-- <a href="#0" class="cd-close-form">Close</a> -->
+          </div> <!-- cd-signup -->
+    
+          <div id="cd-reset-password">
+            <!-- reset password form -->
+            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to
+              create a new password.</p>
+    
+            <form class="cd-form">
+              <p class="fieldset">
+                <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+    
+              <p class="fieldset">
+                <input class="full-width has-padding" type="submit" value="Reset password">
+              </p>
+            </form>
+    
+            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+          </div> <!-- cd-reset-password -->
+          <a href="#0" class="cd-close-form">Close</a>
+        </div> <!-- cd-user-modal-container -->
+      </div> <!-- cd-user-modal -->
+    
+</body>
+
+</html>
