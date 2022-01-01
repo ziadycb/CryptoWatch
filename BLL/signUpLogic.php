@@ -55,6 +55,7 @@
     if(!ValidateSignUp($_POST['name'],$_POST['pass'],$_POST['email']))
     {
         echo false;
+        exit();
     }
 
     if(!CheckUserExist($user))
