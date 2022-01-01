@@ -5,12 +5,12 @@ if (session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 
-if($_POST['setCoin']){
+if($_POST['setCoin'] == 1){
     $_SESSION['coin'] = $_POST['coin'];
-    echo true;
+    echo $_POST['setCoin'];
 }
 else
-    echo $_SESSION['coin'];
+    echo json_encode($_SESSION['coin']);
 
 
     ?>

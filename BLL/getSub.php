@@ -10,6 +10,7 @@ if (session_id() == '' || !isset($_SESSION)) {
 //Check whether the session variable email is present or not
 if (!isset($_SESSION['email'])) {
     echo false;
+    exit();
 }
 
 $sub = new subDTORequest();

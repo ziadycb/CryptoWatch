@@ -10,6 +10,7 @@
 
 span {
     z-index: 99;
+    cursor: pointer;
 }
 .title{
     margin-left: 10%;
@@ -52,10 +53,16 @@ th {
     text-align: -internal-center;
 }
 
-td img {
+td a img {
     height: 24px;
     width: 24px;
     margin-right: 10px;
+}
+
+td a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 }
 
 body {

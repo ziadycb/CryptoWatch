@@ -52,15 +52,17 @@ $(document).ready(function () {
     };
 
     $.ajax(settings).done(function (data) {
-      var results = JSON.parse(data);
-      for (let i = 0; i < 50; i++) {
-        var result = $(results).get(i);
+      if (data) {
+        var results = JSON.parse(data);
+        for (let i = 0; i < 50; i++) {
+          var result = $(results).get(i);
 
-        $("." + result).attr(
-          "class",
-          "checked " + $("." + result).attr("class")
-        );
-        console.log(result);
+          $("." + result).attr(
+            "class",
+            "checked " + $("." + result).attr("class")
+          );
+          console.log(result);
+        }
       }
     });
 
@@ -84,12 +86,16 @@ $(document).ready(function () {
           (i + 1) +
           "</th>" +
           "<td>" +
+          "<a id='" +
+          symbol +
+          "' class='chart'>" +
           '<img src="' +
           img +
           '">' +
           name +
           " " +
           symbol +
+          "</a>" +
           "</td>" +
           "<td>$" +
           price +
@@ -110,7 +116,25 @@ $(document).ready(function () {
           "</tr>"
       );
     }
+    $(".chart").on("click", function () {
+
+      var postForm = {
+        setCoin: 1,
+        coin: $(this).attr("id"),
+      };
+
+      var settings = {
+        method: "POST",
+        url: "../../BLL/coinManager.php",
+        data: postForm,
+      };
+    
+      $.ajax(settings).done(function (data) {
+        
+        window.location.href="chartCoin.html";
+      });
+
+
+    });
   });
-
-
 });
