@@ -15,6 +15,7 @@ jQuery(document).ready(function ($) {
     console.log(data);
     console.log(resultData);
     var chartElement = document.createElement("div");
+    chartElement.classList.add("col-8");
     $(".chart").append(chartElement);
 
     var chart = LightweightCharts.createChart(chartElement, {
@@ -81,6 +82,35 @@ jQuery(document).ready(function ($) {
       console.log(data);
       candleSeries.setData(data);
     });
+
+    $(".chart").append('<div class="col-3 coinstats">'
+    +'<h4 class="row">BTC Price Statistics</h4>'
+    +'<div class="row">'
+      +'<p class="col">Bitcoin price</p>'
+      +'<p class="col">$46,959.08</p>'
+    +'</div>'
+    +'<hr>'
+    +'<div class="row">'
+      +'<p class="col">Bitcoin price</p>'
+      +'<p class="col">$46,959.08</p>'
+    +'</div>'
+    +'<hr>'
+    +'<div class="row">'
+      +'<p class="col">Bitcoin price</p>'
+      +'<p class="col">$46,959.08</p>'
+    +'</div>'
+    +'<hr>'
+    +'<div class="row">'
+      +'<p class="col">Bitcoin price</p>'
+      +'<p class="col">$46,959.08</p>'
+    +'</div>'
+    +'<hr>'
+    +'<div class="row">'
+      +'<p class="col">Bitcoin price</p>'
+      +'<p class="col">$46,959.08</p>'
+    +'</div>'
+    +'<hr>'
+  +'</div>');
   });
 
   /*
