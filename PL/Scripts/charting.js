@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
   var postForm = {
     setCoin: 0,
-    coin:null,
+    coin: null,
   };
 
   var settings = {
@@ -34,7 +34,10 @@ jQuery(document).ready(function ($) {
     var candleSeries = chart.addCandlestickSeries();
     const settings = {
       method: "GET",
-      url: "https://min-api.cryptocompare.com/data/v2/histoday?fsym="+resultData+"&tsym=USD&limit=300&api_key=88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3",
+      url:
+        "https://min-api.cryptocompare.com/data/v2/histoday?fsym=" +
+        resultData +
+        "&tsym=USD&limit=300&api_key=88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3",
     };
 
     var openA = 0;
@@ -52,7 +55,7 @@ jQuery(document).ready(function ($) {
 
       for (let i = 0; i < 300; i++) {
         var result = $(results.Data).get(i);
-        console.log(result);
+        //console.log(result);
 
         date = new Date(result.time * 1000);
         openA = result.open;
@@ -81,36 +84,81 @@ jQuery(document).ready(function ($) {
       }
       console.log(data);
       candleSeries.setData(data);
-    });
 
-    $(".chart").append('<div class="col-3 coinstats">'
-    +'<h4 class="row">BTC Price Statistics</h4>'
-    +'<div class="row">'
-      +'<p class="col">Bitcoin price</p>'
-      +'<p class="col">$46,959.08</p>'
-    +'</div>'
-    +'<hr>'
-    +'<div class="row">'
-      +'<p class="col">Bitcoin price</p>'
-      +'<p class="col">$46,959.08</p>'
-    +'</div>'
-    +'<hr>'
-    +'<div class="row">'
-      +'<p class="col">Bitcoin price</p>'
-      +'<p class="col">$46,959.08</p>'
-    +'</div>'
-    +'<hr>'
-    +'<div class="row">'
-      +'<p class="col">Bitcoin price</p>'
-      +'<p class="col">$46,959.08</p>'
-    +'</div>'
-    +'<hr>'
-    +'<div class="row">'
-      +'<p class="col">Bitcoin price</p>'
-      +'<p class="col">$46,959.08</p>'
-    +'</div>'
-    +'<hr>'
-  +'</div>');
+      const settings = {
+        method: "GET",
+        url:
+          "https://min-api.cryptocompare.com/data/pricemultifull?fsyms="+resultData+"&tsyms=USD&api_key=88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3",
+      };
+
+      $.ajax(settings).done(function (response) {
+        var results = JSON.parse(JSON.stringify(response.DISPLAY));
+        //console.log(results);
+
+        var price = "";
+        var name = "";
+        var priceChange = "";
+        var low = "";
+        var high = "";
+        var open = "";
+        var tradingVolume = "";
+
+          
+          var result = results[Object.keys(results)[0]].USD;
+          console.log(result);
+
+          price = result.PRICE;
+          //name = result.imageurl;
+          priceChange = result.CHANGE24HOUR;
+          low = result.LOWDAY;
+          high = result.HIGHDAY;
+          open = result.OPENDAY;
+          tradingVolume = result.VOLUMEDAYTO;
+
+
+          $(".chart").append(
+            '<div class="col-3 coinstats">' +
+              '<h4 class="row">'+resultData+' Price Statistics</h4>' +
+              '<div class="row">' +
+              '<p class="col">Bitcoin price</p>' +
+              '<p class="col">'+price+'</p>' +
+              "</div>" +
+              "<hr>" +
+              '<div class="row">' +
+              '<p class="col">Price Change</p>' +
+              '<p class="col">'+priceChange+'</p>' +
+              "</div>" +
+              "<hr>" +
+              '<div class="row">' +
+              '<p class="col">Day Low / Day High</p>' +
+              '<p class="col">'+low+'/'+high+'</p>' +
+              "</div>" +
+              "<hr>" +
+              '<div class="row">' +
+              '<p class="col">Trading Volume</p>' +
+              '<p class="col">'+tradingVolume+'</p>' +
+              "</div>" +
+              "<hr>" +
+              '<div class="row">' +
+              '<p class="col">Bitcoin price</p>' +
+              '<p class="col">$46,959.08</p>' +
+              "</div>" +
+              "<hr>" +
+              "</div>"
+          );
+
+          var today = new Date();
+          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
+          price = price.split(".",1)[0].replace(/\D/g,'');
+          open = open.split(".",1)[0].replace(/\D/g,'');
+          high = high.split(".",1)[0].replace(/\D/g,'');
+          low = low.split(".",1)[0].replace(/\D/g,'');
+          console.log(date);
+
+          candleSeries.update({ time: date, open: open, high: high, low: low, close: price});
+        
+      });
+    });
   });
 
   /*
