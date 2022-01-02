@@ -2,6 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+.cd-error-message-use,.cd-error-message-sign {
+  color: red;
+}
 body,html {
   height: 100%;
   min-height: -webkit-fill-available;
