@@ -23,7 +23,7 @@
 
     function ValidatePassword($password) {
            
-        $pattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i';
+        $pattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/i';
         if(preg_match($pattern, $password) == 1)
         {
             return true;

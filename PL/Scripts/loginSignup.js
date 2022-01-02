@@ -158,7 +158,8 @@ jQuery(document).ready(function ($) {
             if (data) {
                 console.log("Ajax call success");
             } else {
-                console.log("Ajax call NOT success"); 
+                console.log("Ajax call NOT success");
+                $(".cd-error-message-sign").text("Innacurate input");
             }
             
           },
@@ -194,7 +195,8 @@ jQuery(document).ready(function ($) {
                   console.log("Ajax call success");
                   window.location.replace("../Views/cryptoStats.html");
               } else {
-                  console.log("Ajax call NOT success"); 
+                  console.log("Ajax call NOT success");
+                  $(".cd-error-message-use").text("Email or Pass incorrect");
               }
               
             },

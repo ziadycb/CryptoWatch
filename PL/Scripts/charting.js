@@ -88,7 +88,9 @@ jQuery(document).ready(function ($) {
       const settings = {
         method: "GET",
         url:
-          "https://min-api.cryptocompare.com/data/pricemultifull?fsyms="+resultData+"&tsyms=USD&api_key=88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3",
+          "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" +
+          resultData +
+          "&tsyms=USD&api_key=88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3",
       };
 
       $.ajax(settings).done(function (response) {
@@ -103,60 +105,113 @@ jQuery(document).ready(function ($) {
         var open = "";
         var tradingVolume = "";
 
+        var result = results[Object.keys(results)[0]].USD;
+        console.log(result);
+
+        price = result.PRICE;
+        //name = result.imageurl;
+        priceChange = result.CHANGE24HOUR;
+        low = result.LOWDAY;
+        high = result.HIGHDAY;
+        open = result.OPENDAY;
+        tradingVolume = result.VOLUMEDAYTO;
+
+        $(".chart").append(
+          '<div class="col-3 coinstats">' +
+            '<h4 class="row">' +
+            resultData +
+            " Price Statistics</h4>" +
+            '<div class="row">' +
+            '<p class="col">' +
+            resultData +
+            " price</p>" +
+            '<p class="col price">' +
+            price +
+            "</p>" +
+            "</div>" +
+            "<hr>" +
+            '<div class="row">' +
+            '<p class="col">Price Change</p>' +
+            '<p class="col">' +
+            priceChange +
+            "</p>" +
+            "</div>" +
+            "<hr>" +
+            '<div class="row">' +
+            '<p class="col">Day Low / Day High</p>' +
+            '<p class="col">' +
+            low +
+            "/" +
+            high +
+            "</p>" +
+            "</div>" +
+            "<hr>" +
+            '<div class="row">' +
+            '<p class="col">Trading Volume</p>' +
+            '<p class="col">' +
+            tradingVolume +
+            "</p>" +
+            "</div>" +
+            "<hr>" +
+            '<div class="row">' +
+            '<p class="col">Bitcoin price</p>' +
+            '<p class="col">$46,959.08</p>' +
+            "</div>" +
+            "<hr>" +
+            "</div>"
+        );
+
+        var today = new Date();
+        var date =
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          (today.getDate() + 1);
+        price = price.split(".", 1)[0].replace(/\D/g, "");
+        open = open.split(".", 1)[0].replace(/\D/g, "");
+        high = high.split(".", 1)[0].replace(/\D/g, "");
+        low = low.split(".", 1)[0].replace(/\D/g, "");
+        console.log(date);
+
+        candleSeries.update({
+          time: date,
+          open: open,
+          high: high,
+          low: low,
+          close: price,
+        });
+
+        // this is where you paste your api key
+        var apiKey =
+          "88d2cc63e537bedbd86355d6a5a08b1009c01b1a9c265372777e2fcbecd84be3";
+        var ccStreamer = new WebSocket(
+          "wss://streamer.cryptocompare.com/v2?api_key=" + apiKey
+        );
+        ccStreamer.onopen = function onStreamOpen() {
+          var subRequest = {
+            action: "SubAdd",
+            subs: ["0~Coinbase~"+resultData+"~USD"],
+          };
+          ccStreamer.send(JSON.stringify(subRequest));
+        };
+
+        ccStreamer.onmessage = function onStreamMessage(message) {
+          var message =JSON.parse( message.data);
           
-          var result = results[Object.keys(results)[0]].USD;
-          console.log(result);
-
-          price = result.PRICE;
-          //name = result.imageurl;
-          priceChange = result.CHANGE24HOUR;
-          low = result.LOWDAY;
-          high = result.HIGHDAY;
-          open = result.OPENDAY;
-          tradingVolume = result.VOLUMEDAYTO;
-
-
-          $(".chart").append(
-            '<div class="col-3 coinstats">' +
-              '<h4 class="row">'+resultData+' Price Statistics</h4>' +
-              '<div class="row">' +
-              '<p class="col">Bitcoin price</p>' +
-              '<p class="col">'+price+'</p>' +
-              "</div>" +
-              "<hr>" +
-              '<div class="row">' +
-              '<p class="col">Price Change</p>' +
-              '<p class="col">'+priceChange+'</p>' +
-              "</div>" +
-              "<hr>" +
-              '<div class="row">' +
-              '<p class="col">Day Low / Day High</p>' +
-              '<p class="col">'+low+'/'+high+'</p>' +
-              "</div>" +
-              "<hr>" +
-              '<div class="row">' +
-              '<p class="col">Trading Volume</p>' +
-              '<p class="col">'+tradingVolume+'</p>' +
-              "</div>" +
-              "<hr>" +
-              '<div class="row">' +
-              '<p class="col">Bitcoin price</p>' +
-              '<p class="col">$46,959.08</p>' +
-              "</div>" +
-              "<hr>" +
-              "</div>"
-          );
-
-          var today = new Date();
-          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
-          price = price.split(".",1)[0].replace(/\D/g,'');
-          open = open.split(".",1)[0].replace(/\D/g,'');
-          high = high.split(".",1)[0].replace(/\D/g,'');
-          low = low.split(".",1)[0].replace(/\D/g,'');
-          console.log(date);
-
-          candleSeries.update({ time: date, open: open, high: high, low: low, close: price});
-        
+          if(message.TYPE == 0)
+          {
+            candleSeries.update({
+              time: date,
+              open: open,
+              high: high,
+              low: low,
+              close: message.P,
+            });
+            $(".price").text(message.P)
+            console.log(message.P);
+          }
+        };
       });
     });
   });
